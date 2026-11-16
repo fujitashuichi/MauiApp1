@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using MauiApp1.Models;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -8,6 +9,22 @@ namespace MauiApp1
     {
         public static MauiApp CreateMauiApp()
         {
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            {
+                var exception = e.ExceptionObject as Exception;
+                if (exception != null)
+                {
+                    // Log the exception or handle it as needed
+                    System.Diagnostics.Debug.WriteLine($"Unhandled exception: {exception.Message}");
+                }
+            };
+            TaskScheduler.UnobservedTaskException += (sender, e) =>
+            {
+                // Log the exception or handle it as needed
+                System.Diagnostics.Debug.WriteLine($"Unobserved task exception: {e.Exception.Message}");
+                e.SetObserved(); // Prevents the process from terminating
+            };
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -19,14 +36,6 @@ namespace MauiApp1
     				Microsoft.Maui.Controls.Handlers.Items.CollectionViewHandler.Mapper.AppendToMapping("KeyboardAccessibleCollectionView", (handler, view) =>
     				{
     					handler.PlatformView.SingleSelectionFollowsFocus = false;
-    				});
-
-    				Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(Pages.Controls.CategoryChart), (handler, view) =>
-    				{
-    					if (view is Pages.Controls.CategoryChart && handler.PlatformView is Microsoft.Maui.Platform.ContentPanel contentPanel)
-    					{
-    						contentPanel.IsTabStop = true;
-    					}
     				});
 #endif
                 })
@@ -42,19 +51,9 @@ namespace MauiApp1
     		builder.Logging.AddDebug();
     		builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
-
-            builder.Services.AddSingleton<ProjectRepository>();
-            builder.Services.AddSingleton<TaskRepository>();
-            builder.Services.AddSingleton<CategoryRepository>();
-            builder.Services.AddSingleton<TagRepository>();
-            builder.Services.AddSingleton<SeedDataService>();
-            builder.Services.AddSingleton<ModalErrorHandler>();
             builder.Services.AddSingleton<MainPageModel>();
-            builder.Services.AddSingleton<ProjectListPageModel>();
-            builder.Services.AddSingleton<ManageMetaPageModel>();
-
-            builder.Services.AddTransientWithShellRoute<ProjectDetailPage, ProjectDetailPageModel>("project");
-            builder.Services.AddTransientWithShellRoute<TaskDetailPage, TaskDetailPageModel>("task");
+            builder.Services.AddSingleton<AppDataContext>();
+            builder.Services.AddSingleton<IAppDataContextManager, AppDataContextManager>();
 
             return builder.Build();
         }

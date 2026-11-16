@@ -16,22 +16,6 @@
         SemanticProperties.Description="Dashboard"
         SemanticProperties.Hint="Navigate to dashboard"/>
 
-    <ShellContent
-        Title="Projects"
-        Icon="{StaticResource IconProjects}"
-        ContentTemplate="{DataTemplate pages:ProjectListPage}"
-        Route="projects"
-        SemanticProperties.Description="Projects"
-        SemanticProperties.Hint="Navigate to projects"/>
-
-    <ShellContent
-        Title="Manage Meta"
-        Icon="{StaticResource IconMeta}"
-        ContentTemplate="{DataTemplate pages:ManageMetaPage}"
-        Route="manage"
-        SemanticProperties.Description="Manage Meta"
-        SemanticProperties.Hint="Navigate to manage meta"/>
-
     <Shell.FlyoutFooter>
         <Grid Padding="15">
             <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" 
