@@ -17,8 +17,8 @@ namespace MauiApp1.UnitTests
         public void Number_Updates_Correctly()
         {
             var context = new AppDataContext();
-            context.Number = 5;
-            Assert.Equal(5, context.Number);
+            context.Increment();
+            Assert.Equal(1, context.Number);
         }
     }
 
@@ -26,7 +26,7 @@ namespace MauiApp1.UnitTests
     {
         [Fact]
         public void Count_Updates_Correctly() {
-            var context = new AppDataContext { Number = 0 };
+            var context = new AppDataContext();
             var contextManager = new AppDataContextManager();
 
             var model = new MainPageModel(context, contextManager);

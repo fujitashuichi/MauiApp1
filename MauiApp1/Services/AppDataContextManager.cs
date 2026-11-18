@@ -8,7 +8,7 @@ namespace MauiApp1.Services
         public void CountUpNumber(AppDataContext context)
         {
             var oldValue = context.Number;
-            context.Number++;
+            context.Increment();
             LogChanged(context, nameof(AppDataContext.Number), oldValue, context.Number);
         }
 
