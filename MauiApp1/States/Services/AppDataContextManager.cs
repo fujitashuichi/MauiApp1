@@ -1,7 +1,7 @@
-using MauiApp1.Models;
 using System.Diagnostics;
+using MauiApp1.States.Models;
 
-namespace MauiApp1.Services
+namespace MauiApp1.States.Services
 {
     public class AppDataContextManager : IAppDataContextManager
     {
