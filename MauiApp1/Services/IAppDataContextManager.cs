@@ -6,6 +6,6 @@ namespace MauiApp1.Services
     {
         void CountUpNumber(AppDataContext context);
 
-        void LogChange(AppDataContext context, string propertyName, object oldValue, object newValue);
+        void LogChanged(AppDataContext context, string propertyName, object oldValue, object newValue);
     }
 }

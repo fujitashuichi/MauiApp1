@@ -8,11 +8,11 @@ namespace MauiApp1.Services
         public void CountUpNumber(AppDataContext context)
         {
             var oldValue = context.Number;
-            context.Number++;
-            LogChange(context, nameof(AppDataContext.Number), oldValue, context.Number);
+            context.Increment();
+            LogChanged(context, nameof(AppDataContext.Number), oldValue, context.Number);
         }
 
-        public void LogChange(AppDataContext context, string propertyName, object oldValue, object newValue)
+        public void LogChanged(AppDataContext context, string propertyName, object oldValue, object newValue)
         {
             Debug.WriteLine($"Property '{propertyName}' changed from '{oldValue}' to '{newValue}' in context.");
         }
