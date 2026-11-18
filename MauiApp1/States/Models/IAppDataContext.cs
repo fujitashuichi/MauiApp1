@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace MauiApp1.Models
+namespace MauiApp1.States.Models
 {
     public interface IAppDataContext : INotifyPropertyChanged
     {

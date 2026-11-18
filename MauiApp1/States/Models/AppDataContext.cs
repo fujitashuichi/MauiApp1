@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace MauiApp1.Models
+namespace MauiApp1.States.Models
 {
     public sealed partial class AppDataContext : ObservableObject, IAppDataContext
     {

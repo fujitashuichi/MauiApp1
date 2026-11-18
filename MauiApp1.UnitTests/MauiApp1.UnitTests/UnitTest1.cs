@@ -1,6 +1,6 @@
-﻿using MauiApp1.Models;
+﻿using MauiApp1.States.Models;
+using MauiApp1.States.Services;
 using MauiApp1.PageModels;
-using MauiApp1.Services;
 
 namespace MauiApp1.UnitTests
 {
