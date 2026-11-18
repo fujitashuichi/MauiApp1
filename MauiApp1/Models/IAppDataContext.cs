@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel;
 
-public interface IAppDataContext : INotifyPropertyChanged
+namespace MauiApp1.Models
 {
-    public abstract int Number { get; }
-	public abstract void Increment();
+    public interface IAppDataContext : INotifyPropertyChanged
+    {
+        public abstract int Number { get; }
+        public abstract void Increment();
+    }
 }
